@@ -10,6 +10,16 @@ app.listen(port, () => {
     console.log(`Servidor escutando na porta: http://localhost:${port}`);
 });
 
+// Configurando Handlebars.
+import exphbs from 'express-handlebars';
+app.engine('handlebars', exphbs.engine({
+    defaultLayout: 'main',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    }
+}));
+app.set('view engine', 'handlebars');
 
 // Testando conexao com BANCO DE DADOS.
 import sequelize from './config/conexao.js';
