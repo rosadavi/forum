@@ -5,7 +5,7 @@ const sequelize = new Sequelize({
     host:'localhost',
     username: 'root',
     password: '',
-    database: 'Forum'
+    database: 'forum'
 });
 
 export default sequelize;
