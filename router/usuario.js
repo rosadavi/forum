@@ -17,14 +17,15 @@ router.get('/registrar', (req, res) => {
 router.post('/registrar', (req, res) => {
     const {nome, sobrenome, email, senha} = req.body;
 
-    Usuario.create({
-        nome,
-        sobrenome,
-        email,
-        senha,
-    });
+    // Usuario.create({
+    //     nome: nome,
+    //     sobrenome: sobrenome,
+    //     email: email,
+    //     senha: senha,
+    // });
 
-    res.send('Usuario cadastrado com sucesso.');
+    // res.send('Usuario cadastrado com sucesso.');
+    res.send(req.body);
 });
 
 export default router;
