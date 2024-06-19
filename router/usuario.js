@@ -18,7 +18,7 @@ router.post('/login', async(req, res) => {
     }});
 
     if(cadastro == null) {
-        res.status(400).json({error: 'Credenciais invalidas.'})
+        res.status(400).json({error: 'Credenciais invalidas.'});
     } else {
         req.session.user = {
             id: cadastro.id,

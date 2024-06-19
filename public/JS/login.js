@@ -1,18 +1,18 @@
 const formLogin = document.querySelector('#formLogin');
 
-// formLogin.addEventListener('submit', async(e) => {
-//     e.preventDefault();
+formLogin.addEventListener('submit', async(e) => {
+    e.preventDefault();
 
-//     const formData = new FormData(e.target);
-//     const data = {};
+    const formData = new FormData(e.target);
+    const data = {};
 
-//     formData.forEach((valor, chave) => {
-//         data[chave] = valor;
-//     });
+    formData.forEach((valor, chave) => {
+        data[chave] = valor;
+    });
 
-//     await login('/login', data);
+    await login('/login', data);
 
-// });
+});
 
 async function login(url, data) {
     try {
