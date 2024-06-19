@@ -17,14 +17,16 @@ router.post('/login', async(req, res) => {
         senha
     }});
 
-    if(Object.keys(cadastro).length <= 1) {
+    if(cadastro == null) {
         res.status(400).json({error: 'Credenciais invalidas.'})
     } else {
-        req.session.userId = cadastro.id;
-        req.session.userNome = cadastro.nome;
-        req.session.userSobrenome = cadastro.sobrenome;
-        req.session.userEmail = cadastro.email
-        res.render('public/usuario.handlebars');
+        req.session.user = {
+            id: cadastro.id,
+            nome: cadastro.nome,
+            sobrenome: cadastro.sobrenome,
+            email: cadastro.email
+        }
+        res.redirect('usuario');
     }
 
 });
@@ -47,10 +49,23 @@ router.post('/registrar', async(req, res) => {
             senha,
         }); 
         res.send('Usuario cadastrado com sucesso.');
-    } else {
+    } else {registrar
         res.status(400).json({error: 'Email ja cadastrado.'});
     }
 
+});
+
+router.get('/usuario', (req, res) => {
+    if(req.session.user == undefined || req.session.user == null) {
+        res.redirect('/login');
+    } else {
+        res.render('public/usuario.handlebars', {user:req.session.user});
+    }
+}); 
+
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 export default router;
